@@ -1,25 +1,27 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ZealotEngine_Gen : MonoBehaviour {
 	
 
 	//Magic Constants
-	public int planetMaxPop;
-	public int shipsMaxPop;
+	public int planetMaxPop = 30;
+	public int shipsMaxPop = 50;
 
 	//Prefabs
 	public GameObject PlanetPrefab;
 
 
 
-	//Arrays
-	public GameObject[] PlanetsArray;
-	public GameObject[] ShipsArray;
+	//Lists
+	public List<GameObject> PlanetsInScene;
+	public List<GameObject> ShipsInScene;
+	
+	public List<GameObject> Planets_CoreWorlds;
 
-	public GameObject[] Planets_CoreWorlds;
-
-
+	//Variables
+	public int planets;
 	
 	// Use this for initialization
 	void Start () {
@@ -35,8 +37,14 @@ public class ZealotEngine_Gen : MonoBehaviour {
 	void GeneratePlanets()
 	{
 		//For Loop generating planets
-
-		//Instantiate(PlanetPrefab,new Vector3(x,y,0),Quaternion.identity);
+		for(planets=0;planets < planetMaxPop; planets++)
+		{
+			float x = Random.Range(-1000,1000);
+			float y = Random.Range(-1000,1000);
+			GameObject Planet = (Instantiate(PlanetPrefab,new Vector3(x,y,0),Quaternion.identity)as GameObject);
+			PlanetsInScene.Add(Planet);
+			Planet.transform.parent = GameObject.FindWithTag("planetContainer").transform;
+		}
 	}
 	
 	// Update is called once per frame

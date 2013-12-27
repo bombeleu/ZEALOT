@@ -45,11 +45,19 @@ TagManager:
     userID: 0
     uniqueID: 0
     locked: 0
-  - name: FORE
-    userID: 2
-    uniqueID: 4015690129
+  - name: UIRADAR
+    userID: 3
+    uniqueID: 827209517
     locked: 0
   - name: BGPlanet
     userID: 1
     uniqueID: 1453252369
+    locked: 0
+  - name: FORE
+    userID: 2
+    uniqueID: 4015690129
+    locked: 0
+  - name: UI
+    userID: 4
+    uniqueID: 3402264145
     locked: 0

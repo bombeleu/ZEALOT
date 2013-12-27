@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Planet : MonoBehaviour
 {
-	
+	public bool CoreWorld = false;	
 	public float diameter;	//Diameter of the Planet
 	public float dayLength;	//Day length on planet in relation to Earth days
 	public float yearLength; //Year length on planet in Earth days
@@ -42,14 +42,15 @@ public class Planet : MonoBehaviour
 		/**
 		 * Randomisations
 		 * */
-		setDiameter();
-		setDayLength();
-		setYearLength();
-		setGravity();
-		setAvgTemp();
-		setName();
-		setPolitics();
-		///////////////////
+		if (CoreWorld == false) {
+						setDiameter ();
+						setDayLength ();
+						setYearLength ();
+						setGravity ();
+						setAvgTemp ();
+						setName ();
+						setPolitics ();
+				}
 			
 
 	}

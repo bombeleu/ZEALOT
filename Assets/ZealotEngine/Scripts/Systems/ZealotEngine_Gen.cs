@@ -25,8 +25,8 @@ public class ZealotEngine_Gen : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-	CoreWorlds();
-	GeneratePlanets();
+	//CoreWorlds();
+	//GeneratePlanets();
 	}
 	
 	void CoreWorlds()

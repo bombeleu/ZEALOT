@@ -71,11 +71,11 @@ public class DockingManager : MonoBehaviour {
         PlayerShipControl helm = GameObject.FindWithTag ("Player").GetComponent<PlayerShipControl> ();
         dockButton = Input.GetButton ("Dock");
         if (inDockingRange) {
-            if (docking == false && undocking == false && docked == false && undockTimer < 0) {
+            if (!docking && !undocking && !docked && undockTimer < 0) {
                 dockUI.guiText.text = dockUIString;
             }
             if (dockButton) {
-                if (docked == false && docking == false && undocking == false) {
+                if (!docked && !docking && !undocking) {
                     docking = true;
                     undocking = false;
                     targetPosition = planetInDockingRange.transform.position;
@@ -98,7 +98,7 @@ public class DockingManager : MonoBehaviour {
                     docking = false;
                 }
             }
-            if (docked && docking == false && undocking == false) {
+            if (docked && !docking && !undocking) {
                 //Docked
                 dockUI.guiText.text = undockUIString;
                 if (dockButton == true && undockTimer < 0) {
@@ -122,7 +122,7 @@ public class DockingManager : MonoBehaviour {
                 dockUI.guiText.text = undockingUIString;
                 if (undockTimer > 0)
                     undockTimer -= Time.deltaTime;
-            } else if (docked == false && docking == false && undocking == true) {
+            } else if (!docked && !docking && undocking) {
                 undocking = false;
                 helm.brake = false;
                 helm.rigidbody2D.isKinematic = false;

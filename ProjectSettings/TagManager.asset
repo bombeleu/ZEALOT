@@ -7,6 +7,7 @@ TagManager:
   - planetTag
   - playershipTag
   - bulletTag
+  - dockUITag
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -45,10 +46,6 @@ TagManager:
     userID: 0
     uniqueID: 0
     locked: 0
-  - name: UIRADAR
-    userID: 3
-    uniqueID: 827209517
-    locked: 0
   - name: BGPlanet
     userID: 1
     uniqueID: 1453252369
@@ -56,6 +53,14 @@ TagManager:
   - name: FORE
     userID: 2
     uniqueID: 4015690129
+    locked: 0
+  - name: Particles
+    userID: 5
+    uniqueID: 1245983685
+    locked: 0
+  - name: UIRADAR
+    userID: 3
+    uniqueID: 827209517
     locked: 0
   - name: UI
     userID: 4

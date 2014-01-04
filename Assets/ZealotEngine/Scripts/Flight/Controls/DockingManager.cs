@@ -51,25 +51,29 @@ public class DockingManager : MonoBehaviour {
         collidingObjects.Add (triggerCollider);
     }
     void OnTriggerExit2D (Collider2D triggerCollider) {
+        if (planetInDockingRange == null && !inDockingRange && docking)
+            return;
+        if (Vector2.Distance (planetInDockingRange.transform.position, transform.position) > radius && !docking) {
+            planetInDockingRange = null;
+            inDockingRange = false;
+        }
         collidingObjects.Remove (triggerCollider);
     }
 
     // Update is called once per frame
     void Update () {
-        if (collidingObjects.Count <= 0) {
-            collidingObjects.Clear ();
-            inDockingRange = false;
-            return;
-        }
-        foreach (Collider2D collider in collidingObjects) {
-            //We have at least one in docking range.
-            if (collider.tag == "planetTag") {
-                planetInDockingRange = collider.transform;
-                inDockingRange = true;
-            } 
-        }
         PlayerShipControl helm = GameObject.FindWithTag ("Player").GetComponent<PlayerShipControl> ();
         dockButton = Input.GetButton ("Dock");
+        if (!inDockingRange) {
+            foreach (Collider2D collider in collidingObjects) {
+                //We have at least one in docking range.
+                if (collider.tag == "planetTag") {
+                    planetInDockingRange = collider.transform;
+                    inDockingRange = true;
+                } 
+            }
+        }
+
         if (inDockingRange) {
             if (!docking && !undocking && !docked && undockTimer < 0) {
                 dockUI.guiText.text = dockUIString;
@@ -84,7 +88,7 @@ public class DockingManager : MonoBehaviour {
             }
             if (docking) {
                 dockUI.guiText.text = dockingUIString;
-                if (Vector3.Distance (transform.position, targetPosition) > 0.5F) {
+                if (Vector3.Distance (transform.position, targetPosition) > 0.3F) {
                     helm.brake = false;
                     helm.rigidbody2D.isKinematic = true;
                     helm.transform.position = (Vector2.MoveTowards (transform.position, targetPosition, dockingSpeed * Time.deltaTime));

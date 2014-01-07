@@ -8,6 +8,7 @@ TagManager:
   - playershipTag
   - bulletTag
   - dockUITag
+  - uiPlanetTag
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -17,14 +18,14 @@ TagManager:
   Builtin Layer 5: 
   Builtin Layer 6: 
   Builtin Layer 7: 
-  User Layer 8: UI
+  User Layer 8: UI_RADAR
   User Layer 9: SFX
   User Layer 10: System
   User Layer 11: Astral
   User Layer 12: Ship
   User Layer 13: Station
   User Layer 14: Projectile
-  User Layer 15: 
+  User Layer 15: UI_MAIN
   User Layer 16: 
   User Layer 17: 
   User Layer 18: 

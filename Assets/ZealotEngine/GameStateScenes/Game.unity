@@ -145,6 +145,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 26c2435d94487e74e8b387d74f830909, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 26c2435d94487e74e8b387d74f830909, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 26c2435d94487e74e8b387d74f830909, type: 2}
   m_RootGameObject: {fileID: 538739214}
@@ -6100,6 +6108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dockingSpeed: .850000024
   dockUI: {fileID: 996083105}
+  uiPlanetInfo: {fileID: 1042480324}
+  uiPlanetTitle: {fileID: 270841864}
 --- !u!58 &1316263028
 CircleCollider2D:
   m_ObjectHideFlags: 0

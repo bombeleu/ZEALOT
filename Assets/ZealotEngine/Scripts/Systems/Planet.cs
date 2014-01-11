@@ -81,22 +81,22 @@ public class Planet : MonoBehaviour{
         int rand = Random.Range(0, 15);
         switch (rand){
         case 0:
-            politics = PoliticalSystemType.Anarchy;
+            politics = PoliticalSystemType.Anarchism;
             break;
         case 1:
-            politics = PoliticalSystemType.Capitalist;
+            politics = PoliticalSystemType.Capitalism;
             break;
         case 2:
-            politics = PoliticalSystemType.Communist;
+            politics = PoliticalSystemType.Communism;
             break;
         case 3:
             politics = PoliticalSystemType.Confederacy;
             break;
         case 4:
-            politics = PoliticalSystemType.Corporate;
+            politics = PoliticalSystemType.Corporatism;
             break;
         case 5:
-            politics = PoliticalSystemType.Cybernetic;
+            politics = PoliticalSystemType.Cyberneticism;
             break;
         case 6:
             politics = PoliticalSystemType.Democracy;
@@ -105,25 +105,25 @@ public class Planet : MonoBehaviour{
             politics = PoliticalSystemType.Dictatorship;
             break;
         case 8:
-            politics = PoliticalSystemType.Fascist;
+            politics = PoliticalSystemType.Fascism;
             break;
         case 9:
-            politics = PoliticalSystemType.Feudal;
+            politics = PoliticalSystemType.Feudalism;
             break;
         case 10:
-            politics = PoliticalSystemType.Military;
+            politics = PoliticalSystemType.Militarism;
             break;
         case 11:
             politics = PoliticalSystemType.Monarchy;
             break;
         case 12: 
-            politics = PoliticalSystemType.Pacifist;
+            politics = PoliticalSystemType.Pacifism;
             break;
         case 13:
             politics = PoliticalSystemType.Satori;
             break;
         case 14:
-            politics = PoliticalSystemType.Socialist;
+            politics = PoliticalSystemType.Socialism;
             break;
         case 15:
             politics = PoliticalSystemType.Technocracy;
@@ -132,14 +132,18 @@ public class Planet : MonoBehaviour{
             politics = PoliticalSystemType.Theocracy;
             break;
         default:
-            politics = PoliticalSystemType.Anarchy;	
+            politics = PoliticalSystemType.Anarchism;	
             break;
         }
     }
 
     public string getDescription(){
         //# TODO: Planet Description
-        string description = "This is a \ngeneric planet description \nfor " + gameObject.name;
+        string description = "" +
+            name + ", " + "has a diameter of " + "\n" + diameter + "KM, " + "days are " + dayLength + "\n" +
+            " solar hours long, " + "and it takes " + yearLength + " days" + "\n" + "to orbit it's local star." + "\n" +
+            "Average temperatures range between" + "\n" + ((avgTemp / 100) * 85).ToString() + " - " + ((avgTemp / 100) * 110).ToString() + " Celcius." + "\n" +
+            "Society on " + name + " consists" + "\n" + "of " + politics + ", They are known for" + "\n" + " being " + rep + ", and technologically " + tech + ".";
         return description;
     }
 

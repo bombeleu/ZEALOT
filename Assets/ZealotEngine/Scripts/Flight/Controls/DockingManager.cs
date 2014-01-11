@@ -30,42 +30,26 @@ public class DockingManager : MonoBehaviour{
     public TextMesh uiPlanetInfo;
     public TextMesh uiPlanetTitle;
 
-    List<GameObject> VisitedPlanets;
+    public List<GameObject> VisitedPlanets;
 
     //Temporary OnGUI for docking debugging;
     void OnGUI(){
         Vector2 boxsize = new Vector2(24.0F, 10.0F);
         if(inDockingRange == false){
-            if(dockUI.activeSelf == true)
-                dockUI.SetActive(false);
-            if(uiPlanetInfo.gameObject.activeSelf == true)
-                uiPlanetInfo.gameObject.SetActive(false);
-            if(uiPlanetTitle.gameObject.activeSelf == true)
-                uiPlanetTitle.gameObject.SetActive(false);
+            dockingToolTipOff();
+            setPlanetTitleOffAndPlanetInfoOff();
             return;
         }
         if(docked){
-            if(dockUI.activeSelf == false){
-                dockUI.SetActive(true);
-            }
-            if(uiPlanetInfo.gameObject.activeSelf == false)
-                uiPlanetInfo.gameObject.SetActive(true);
-            if(uiPlanetTitle.gameObject.activeSelf == false)
-                uiPlanetTitle.gameObject.SetActive(true);
-            //Show planet info
+            dockingToolTipOn();
+            setPlanetTitleOnAndPlanetInfoOn();
             return;
         }
         if(!docked && inDockingRange){
-            if(planetInDockingRange != null){
-                if(uiPlanetTitle.gameObject.activeSelf == false)
-                    uiPlanetTitle.gameObject.SetActive(true);
-                if(VisitedPlanets.Contains(planetInDockingRange.gameObject) == false){
-                    uiPlanetTitle.text = "????";
-                }
-            }
-
-            if(dockUI.activeSelf == false){
-                dockUI.SetActive(true);
+            if(planetInDockingRange){
+                dockingToolTipOn();
+                planetTitleOnWithNoPlanetInfo();
+                checkIfVisited();
             }
         }
     }
@@ -75,8 +59,59 @@ public class DockingManager : MonoBehaviour{
         shipTransform = this.gameObject.transform;
         uiPlanetInfo = GameObject.Find("UIPlanetInfoText").GetComponent<TextMesh>();
         uiPlanetTitle = GameObject.Find("UIPlanetText").GetComponent<TextMesh>();
+        setPlanetInfoTextToUnknown();
+        setPlanetTitleToUnknown();
+        setPlanetTitleOffAndPlanetInfoOff();
+    }
+
+    void dockingToolTipOn(){
+        if(dockUI.activeSelf == false){
+            dockUI.SetActive(true);
+        }
+    }
+
+    void dockingToolTipOff(){
+        if(dockUI.activeSelf == true)
+            dockUI.SetActive(false);
+    }
+
+    void planetTitleOnWithNoPlanetInfo(){
+        if(uiPlanetInfo.gameObject.activeSelf == true)
+            uiPlanetInfo.gameObject.SetActive(false);
+        if(uiPlanetTitle.gameObject.activeSelf == false)
+            uiPlanetTitle.gameObject.SetActive(true);
+    }
+
+    void setPlanetTitleOnAndPlanetInfoOn(){
+        if(uiPlanetInfo.gameObject.activeSelf == false)
+            uiPlanetInfo.gameObject.SetActive(true);
+        if(uiPlanetTitle.gameObject.activeSelf == false)
+            uiPlanetTitle.gameObject.SetActive(true);
+    }
+
+    void setPlanetTitleOffAndPlanetInfoOff(){
+        if(uiPlanetInfo.gameObject.activeSelf == true)
+            uiPlanetInfo.gameObject.SetActive(false);
+        if(uiPlanetTitle.gameObject.activeSelf == true)
+            uiPlanetTitle.gameObject.SetActive(false);
+    }
+
+    void checkIfVisited(){
+        if(VisitedPlanets.Contains(planetInDockingRange.gameObject)){
+            uiPlanetTitle.text = planetInDockingRange.gameObject.name;
+            return;
+        } else{
+            setPlanetTitleToUnknown();
+            return;
+        }
+    }
+
+    void setPlanetTitleToUnknown(){
+        uiPlanetTitle.text = "?????????";
+    }
+
+    void setPlanetInfoTextToUnknown(){
         uiPlanetInfo.text = "????";
-        uiPlanetTitle.text = "????";
     }
 
     void OnTriggerEnter2D(Collider2D triggerCollider){
@@ -84,6 +119,7 @@ public class DockingManager : MonoBehaviour{
             return;
         collidingObjects.Add(triggerCollider);
     }
+
     void OnTriggerExit2D(Collider2D triggerCollider){
         if(planetInDockingRange == null && !inDockingRange && docking)
             return;
